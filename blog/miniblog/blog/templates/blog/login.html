@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% load static %} 
+{% block content %} 
+<div class="col-sm-4">
+    <h3 class="text-white my-5">Login Page</h3>
+    <form action="" method="POST" novalidate>
+        {%csrf_token%} 
+        {% if form.non_field_errors %}
+            {% for error in form.non_field_errors  %}
+                {{error}}
+            {% endfor %}
+        {% endif %} 
+
+        {% for fm in form  %}
+        {{fm.label_tag}} {{fm}} <small class="text-warning">{{fm.errors|striptags}} </small><br>
+        {% endfor %}
+        <input class="btn btn-primary" type="submit" value="LOGIN">
+        <a class="btn btn-primary" href="{% url 'singup' %}">SINGUP</a>
+        <a class="btn btn-primary" href="{% url 'home' %}">HOME</a>
+</div>
+
+{% endblock content %}
